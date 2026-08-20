@@ -1,1 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kinshuk — Personal Website</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Space+Grotesk:wght@500;700&display=swap');
 
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,Arial,sans-serif;
+  background:#07070b;color:#f5f5f7;line-height:1.6;
+  overflow-x:hidden;
+}
+body:before{
+  content:"";position:fixed;inset:0;z-index:-2;
+  background:
+    radial-gradient(circle at 15% 15%,rgba(126,87,255,.22),transparent 28%),
+    radial-gradient(circle at 85% 25%,rgba(0,210,255,.14),transparent 25%),
+    radial-gradient(circle at 50% 90%,rgba(255,0,140,.10),transparent 30%);
+}
+body:after{
+  content:"";position:fixed;inset:0;z-index:-1;opacity:.18;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+                    linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:45px 45px;
+}
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:10;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 7%;background:rgba(7,7,11,.72);
+  backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.08)
+}
+.logo{font-family:"Space Grotesk";font-weight:700;font-size:22px}
+.logo span{color:#9d7cff}
+nav a{color:#aaa;text-decoration:none;margin-left:25px;font-size:14px}
+nav a:hover{color:white}
+.hero{min-height:100vh;display:grid;place-items:center;padding:130px 7% 70px}
+.hero-inner{max-width:1100px;width:100%;display:grid;grid-template-columns:1.3fr .7fr;gap:60px;align-items:center}
+.badge{
+  display:inline-block;padding:8px 13px;border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;color:#bdb4ff;background:rgba(157,124,255,.08);
+  font-size:13px;margin-bottom:20px
+}
+h1{font-family:"Space Grotesk";font-size:clamp(52px,8vw,96px);line-height:.95;letter-spacing:-5px}
+.gradient{
+  background:linear-gradient(90deg,#fff,#b7a8ff,#78e7ff);
+  -webkit-background-clip:text;background-clip:text;color:transparent
+}
+.hero p{max-width:620px;color:#aaa;margin:25px 0;font-size:18px}
+.buttons{display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-block;text-decoration:none;color:white;padding:13px 20px;
+  border-radius:12px;border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.06);font-weight:700;font-size:14px
+}
+.btn.primary{background:white;color:#08080b}
+.btn:hover{transform:translateY(-2px)}
+.avatar{
+  width:300px;height:300px;margin:auto;border-radius:50%;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,#9d7cff,#4de5ff,#ff5fb7);
+  box-shadow:0 0 90px rgba(126,87,255,.28);
+  position:relative
+}
+.avatar:before{
+  content:"MK";font-family:"Space Grotesk";font-size:85px;font-weight:800;
+  color:#08080b;background:#fff;width:275px;height:275px;border-radius:50%;
+  display:grid;place-items:center
+}
+section{padding:100px 7%}
+.container{max-width:1100px;margin:auto}
+.section-label{color:#9d7cff;font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:2px}
+h2{font-family:"Space Grotesk";font-size:44px;letter-spacing:-2px;margin:8px 0 35px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  padding:25px;border:1px solid rgba(255,255,255,.09);border-radius:20px;
+  background:rgba(255,255,255,.045);transition:.25s
+}
+.card:hover{transform:translateY(-6px);border-color:rgba(157,124,255,.45)}
+.card .icon{font-size:30px;margin-bottom:15px}
+.card h3{margin-bottom:7px}
+.card p{color:#999;font-size:14px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:30px}
+.stat{padding:22px;border-radius:16px;background:rgba(255,255,255,.045);text-align:center}
+.stat strong{display:block;font-family:"Space Grotesk";font-size:30px}
+.stat span{color:#888;font-size:12px}
+.timeline{border-left:1px solid rgba(255,255,255,.15);padding-left:25px}
+.item{margin-bottom:30px;position:relative}
+.item:before{content:"";position:absolute;left:-31px;top:7px;width:11px;height:11px;border-radius:50%;background:#9d7cff}
+.item small{color:#9d7cff}.item h3{margin:5px 0}.item p{color:#999}
+.quote{
+  margin-top:30px;padding:30px;border-radius:20px;
+  background:linear-gradient(135deg,rgba(157,124,255,.10),rgba(78,229,255,.06));
+  border:1px solid rgba(255,255,255,.08);font-size:20px
+}
+footer{padding:35px 7%;border-top:1px solid rgba(255,255,255,.08);color:#777;text-align:center;font-size:13px}
+@media(max-width:800px){
+  .hero-inner{grid-template-columns:1fr;text-align:center}
+  .hero p{margin-left:auto;margin-right:auto}
+  .buttons{justify-content:center}
+  .avatar{width:220px;height:220px}
+  .avatar:before{width:200px;height:200px;font-size:60px}
+  .grid,.stats{grid-template-columns:1fr 1fr}
+  nav div:last-child{display:none}
+}
+@media(max-width:520px){
+  h1{letter-spacing:-3px}.grid,.stats{grid-template-columns:1fr}
+  section{padding:75px 6%}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">KINSHUK<span>.</span></div>
+  <div>
+    <a href="#about">About</a>
+    <a href="#interests">Interests</a>
+    <a href="#journey">Journey</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="badge">⚡ Welcome to my corner of the internet</div>
+      <h1>Hey, I'm <span class="gradient">Kinshuk.</span></h1>
+      <p>
+        Student, gamer, creator, and professional enjoyer of turning random ideas
+        into something actually cool.
+      </p>
+      <div class="buttons">
+        <a class="btn primary" href="#about">Explore ↓</a>
+        <a class="btn" href="#interests">What I like</a>
+      </div>
+    </div>
+    <div class="avatar" aria-label="Kinshuk initials"></div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="container">
+    <div class="section-label">01 — About me</div>
+    <h2>A little bit about me.</h2>
+    <div class="card">
+      <p>
+        I'm Kinshuk, a Class 10 student who likes mixing school life with gaming,
+        tech, creativity and way too many random ideas. I enjoy learning things,
+        experimenting with projects and making stuff that feels like my own.
+      </p>
+    </div>
+    <div class="stats">
+      <div class="stat"><strong>🎮</strong><span>Gamer</span></div>
+      <div class="stat"><strong>💻</strong><span>Tech lover</span></div>
+      <div class="stat"><strong>📚</strong><span>Student</span></div>
+      <div class="stat"><strong>✨</strong><span>Creator</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="interests">
+  <div class="container">
+    <div class="section-label">02 — Interests</div>
+    <h2>Things I’m into.</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="icon">🎮</div>
+        <h3>Gaming</h3>
+        <p>Roblox Rivals, Minecraft and competitive gaming are definitely up there.</p>
+      </div>
+      <div class="card">
+        <div class="icon">⚙️</div>
+        <h3>Tech</h3>
+        <p>PCs, settings, software, launchers and figuring out why something is lagging. 😭</p>
+      </div>
+      <div class="card">
+        <div class="icon">🧠</div>
+        <h3>Learning</h3>
+        <p>Math, science, social science and whatever random topic catches my attention.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🎬</div>
+        <h3>Movies & Series</h3>
+        <p>I like action, comedy, mystery and stories that actually keep things interesting.</p>
+      </div>
+      <div class="card">
+        <div class="icon">✍️</div>
+        <h3>Creative Stuff</h3>
+        <p>Characters, lore, websites, ideas and occasionally some questionable shayari.</p>
+      </div>
+      <div class="card">
+        <div class="icon">🔥</div>
+        <h3>RD</h3>
+        <p>Gaming communities, clan lore, ranks, tournaments and building a whole universe around it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="journey">
+  <div class="container">
+    <div class="section-label">03 — My journey</div>
+    <h2>Currently loading...</h2>
+    <div class="timeline">
+      <div class="item">
+        <small>NOW</small>
+        <h3>Class 10 era 📚</h3>
+        <p>Balancing CBSE life, exams, practice and everything else happening at once.</p>
+      </div>
+      <div class="item">
+        <small>RECENT</small>
+        <h3>Gaming & community building 🎮</h3>
+        <p>Working on gaming ideas, clan systems, characters and stories.</p>
+      </div>
+      <div class="item">
+        <small>NEXT</small>
+        <h3>More projects 🚀</h3>
+        <p>More experiments, more creativity and probably a few completely random ideas.</p>
+      </div>
+    </div>
+
+    <div class="quote">
+      “Why make something normal when you can make it unnecessarily cool?” 😭
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Kinshuk · Built with HTML, CSS & questionable amounts of caffeine.
+</footer>
+
+</body>
+</html>
